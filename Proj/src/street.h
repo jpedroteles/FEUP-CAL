@@ -21,6 +21,8 @@
 
 using namespace std;
 
+class ExceptionStreetNotFound{};
+
 class Street{
 	unsigned id;
 	string name;
@@ -32,10 +34,10 @@ public:
 	Street(string name, int comp, Coord coords,vector<string> connections,unsigned id);
 	Street(string name, int comp,float lat,float lon,vector<string> connections,unsigned id);
 
-	string getname() const;
-	void setname(string n);
-	int getlength();
-	void setlength(int comp);
+	string getName() const;
+	void setName(string n);
+	int getLength();
+	void setLength(int comp);
 	bool operator==(const Street& r1);
 	Coord getCoords();
 	void setCoords(Coord coords);
@@ -45,5 +47,6 @@ public:
 };
 
 void loadStreets(string filename,Graph<Street*> &graph, list<Street*> &streets);
+void graphCreate(Graph<Street*> &graph, list<Street*> &streets);
 
 #endif /* street_H_ */

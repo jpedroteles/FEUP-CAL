@@ -1,0 +1,553 @@
+Avenida dos Aliados
+450
+41.1486516
+-8.6112400
+Praca Filipa de Lencastre
+Rua da Fabrica
+Rua dos Clerigos
+Rua de 31 de Janeiro
+Rua Dr Magalhaes Lemos
+Rua Trindade Coelho
+
+Rua dos Clerigos
+210
+41.1459855
+-8.6123639
+Rua de 31 de Janeiro
+Rua Conde de Vizela
+Rua das Carmelitas
+Rua S Filipe de Nery
+Rua Trindade Coelho
+Rua Arquiteto Nicolau Nasoni
+
+Rua da Restauracao
+900
+41.1462074
+-8.6189889
+Rua Dr Alberto Aires de Gouveia
+Rua Campo dos Martires da Patria
+Rua Jorge Viterbo Ferreira
+Rua Azevedo de Albuquerque
+
+Rua Jorge Viterbo Ferreira
+350
+41.1468860
+-8.6247611
+Rua D Manuel II
+Rua da Restauracao
+
+Rua D Manuel II
+900
+41.1475970
+-8.6220306
+Rua Dr Alberto Aires de Gouveia
+Rua Jorge Viterbo Ferreira
+Rua Dr Tiago de Almeida
+Rua Adolfo Casais Monteiro
+Rua do Rosario
+Rua Boa Nova
+
+Rua de 31 de Janeiro
+450
+41.1461428
+-8.6087751
+Avenida dos Aliados
+Avenida D Afonso Henriques
+Rua de Sa da Bandeira
+
+Rua Augusto Rosa
+450
+41.1440266
+-8.6075305
+Rua Alexandre Herculano
+Rua de Entreparedes
+Rua de 31 de Janeiro
+Rua do Sol
+Rua Saraiva de Carvalho
+
+Rua Saraiva de Carvalho
+190
+41.1432508
+-8.6093947
+Rua Augusto Rosa
+Avenida D Afonso Henriques
+Rua do Sol
+Rua Cha
+
+Avenida D Afonso Henriques
+300
+41.1442444
+-8.6106204
+Rua Saraiva de Carvalho
+Rua Cha
+Rua de 31 de Janeiro
+Avenida dos Aliados
+Rua Mouzinho da Silveira
+Travessa de S Sebastiao
+
+Rua da Fabrica
+350
+41.1475730
+-8.6134904
+Avenida dos Aliados
+Rua Conde de Vizela
+Rua Candido dos Reis
+Rua do Carmo
+
+Rua do Carmo
+450
+41.1471731
+-8.6164489
+Rua da Fabrica
+Rua das Carmelitas
+Rua Dr Ferreira da Silva
+Rua Campo dos Martires da Patria
+
+Rua Dr Tiago de Almeida
+230
+41.1479202
+-8.6192947
+Rua Campo dos Martires da Patria
+Rua Dr Alberto Aires de Gouveia
+Rua D Manuel II
+Travessa Carregal
+Rua do Rosario
+
+Rua Dr Alberto Aires de Gouveia
+160
+41.1466803
+-8.6203005
+Rua Dr Tiago de Almeida
+Rua D Manuel II
+Rua da Restauracao
+Rua Azevedo de Albuquerque
+Rua do Rosario
+
+Rua Formosa
+220
+41.1490798
+-8.6088904
+Avenida dos Aliados
+Rua de Sa da Bandeira
+
+Rua de Sa da Bandeira
+170
+41.1482918
+-8.6080831
+Rua Formosa
+Rua Dr Magalhaes Lemos
+Rua de Passos Manuel
+
+Rua Dr Magalhaes Lemos
+200
+41.1476781
+-8.6100384
+Rua de Sa da Bandeira
+Avenida dos Aliados
+Rua de Passos Manuel
+
+Rua de Passos Manuel
+350
+41.1471731
+-8.6075708
+Rua Dr Magalhaes Lemos
+Rua de Entreparedes
+Rua de Sa da Bandeira
+
+Rua de Ceuta
+160
+41.1483467
+-8.6136581
+Praca Filipa de Lencastre
+Rua da Fabrica
+
+Praca Filipa de Lencastre
+74
+41.1481791
+-8.6125315
+Rua de Ceuta
+Avenida dos Aliados
+
+Rua das Carmelitas
+150
+41.1463895
+-8.6144319
+Rua Dr Ferreira da Silva
+Rua dos Clerigos
+Rua Campo dos Martires da Patria
+Rua Conde de Vizela
+Rua Candido dos Reis
+Rua do Carmo
+Rua Arquiteto Nicolau Nasoni
+
+Rua Dr Ferreira da Silva
+150
+41.1461956
+-8.6153331
+Rua das Carmelitas
+Rua Campo dos Martires da Patria
+Rua S Filipe de Nery
+Rua do Carmo
+Rua S Bento da Vitoria
+
+Rua Campo dos Martires da Patria
+190
+41.1463612
+-8.6176291
+Rua Dr Ferreira da Silva
+Rua das Carmelitas
+Rua da Restauracao
+Rua do Carmo
+Rua Dr Tiago de Almeida
+Rua Azevedo de Albuquerque
+Rua dos Clerigos
+Rua S Bento da Vitoria
+Travessa de S Bento
+Rua Dr Barbosa de Castro
+
+Rua Azevedo de Albuquerque
+350
+41.1455209
+-8.6184605
+Rua Campo dos Martires da Patria
+Rua da Restauracao
+Rua Dr Alberto Aires de Gouveia
+Travessa de S Bento
+Rua Dr Barbosa de Castro
+Passeio das Virtudes
+
+Rua Candido dos Reis
+160
+41.1469267
+-8.6139222
+Rua Campo dos Martires da Patria
+Rua das Carmelitas
+Rua da Fabrica
+Rua dos Clerigos
+Rua Conde de Vizela
+
+Rua Conde de Vizela
+180
+41.1468136
+-8.6135414
+Rua Campo dos Martires da Patria
+Rua das Carmelitas
+Rua da Fabrica
+Rua dos Clerigos
+Rua Candido dos Reis
+Rua Arquiteto Nicolau Nasoni
+
+Rua de Entreparedes
+280
+41.1457229
+-8.6051729
+Rua de Passos Manuel
+Rua Alexandre Herculano
+Rua de 31 de Janeiro
+Rua Augusto Rosa
+Rua do Duque de Loule
+
+Rua do Duque de Loule
+370
+41.1447817
+-8.6046203
+Rua de Entreparedes
+Rua Alexandre Herculano
+Rua do Sol
+Rua Saraiva de Carvalho
+Rua Augusto Rosa
+
+Rua do Sol
+270
+41.1432143
+-8.6066266
+Rua do Duque de Loule
+Rua Saraiva de Carvalho
+Rua Augusto Rosa
+
+Rua Alexandre Herculano
+190
+41.1443979
+-8.6058971
+Rua do Duque de Loule
+Rua de Entreparedes
+Rua Augusto Rosa
+
+Rua Cha
+280
+41.1441714
+-8.6093062
+Rua Saraiva de Carvalho
+Avenida D Afonso Henriques
+Rua Augusto Rosa
+
+Rua S Filipe de Nery
+120
+41.1457958
+-8.6146961
+Rua Dr Ferreira da Silva
+Rua Campo dos Martires da Patria
+Rua das Carmelitas
+Rua dos Clerigos
+Rua Conde de Vizela
+Rua Candido dos Reis
+Rua S Bento da Vitoria
+Rua Arquiteto Nicolau Nasoni
+
+Rua S Bento da Vitoria
+240
+41.1442918
+-8.6155879
+Rua de Tras
+Rua dos Caldeeiros
+Rua da Vitoria
+Rua Campo dos Martires da Patria
+Rua S Filipe de Nery
+Rua Dr Ferreira da Silva
+Travessa de S Bento
+
+Rua Trindade Coelho
+170
+41.1449726
+-8.6118014
+Rua de Tras
+Rua dos Clerigos
+Rua dos Caldeeiros
+Rua Mouzinho da Silveira
+Rua das Flores
+
+
+Rua Mouzinho da Silveira
+550
+41.1437244
+-8.6127480
+Avenida D Afonso Henriques
+Rua Trindade Coelho
+Rua Ponte Nova
+Rua da Bainharia
+
+Rua de Tras
+350
+41.1455034
+-8.6139695
+Rua Trindade Coelho
+Rua Arquiteto Nicolau Nasoni
+Rua S Bento da Vitoria
+
+Rua dos Caldeeiros
+350
+41.1452449
+-8.6135403
+Rua Arquiteto Nicolau Nasoni
+Rua S Bento da Vitoria
+Rua Trindade Coelho
+Rua das Flores
+
+Rua da Vitoria
+500
+41.1431749
+-8.6154087
+Rua dos Caldeeiros
+Rua Ferraz
+Rua S Bento da Vitoria
+Rua das Taipas
+Rua Virtudes
+
+Rua Ferraz
+80
+41.1442592
+-8.6138407
+Rua da Vitoria
+Rua das Flores
+Rua Ponte Nova
+
+Rua das Flores
+350
+41.1440168
+-8.6135618
+Rua Ferraz
+Rua dos Caldeeiros
+Rua Trindade Coelho
+Rua Ponte Nova
+Rua de Belmonte
+Rua da Bainharia
+
+Rua Ponte Nova
+65
+41.1437260
+-8.6133365
+Rua Ferraz
+Rua das Flores
+Rua Mouzinho da Silveira
+
+Rua da Bainharia
+350
+41.1430877
+-8.6131433
+Rua Mouzinho da Silveira
+Rua das Flores
+Rua de Belmonte
+Travessa de S Sebastiao
+
+
+Rua Arquiteto Nicolau Nasoni
+65
+41.1455895
+-8.6134372
+Rua S Filipe de Nery
+Rua das Carmelitas
+Rua Conde de Vizela
+Rua dos Clerigos
+Rua de Tras
+Rua dos Caldeeiros
+
+Travessa de S Bento
+130
+41.1444543
+-8.6163876
+Rua S Bento da Vitoria
+Rua Campo dos Martires da Patria
+Rua Azevedo de Albuquerque
+Rua Dr Barbosa de Castro
+
+Rua Virtudes
+75
+41.1432501
+-8.6179544
+Rua das Taipas
+Rua da Vitoria
+Rua Dr Barbosa de Castro
+Passeio das Virtudes
+Rua Francisco da Rocha Soares
+
+Rua de Belmonte
+300
+41.1425552
+-8.6164792
+Rua da Bainharia
+Rua das Flores
+Rua das Taipas
+Rua Francisco da Rocha Soares
+
+Rua das Taipas
+280
+41.1435159
+-8.6174241
+Travessa de S Bento
+Rua de S Miguel
+Rua da Vitoria
+Rua Virtudes
+Rua de Belmonte
+
+Rua Dr Barbosa de Castro
+150
+41.1440411
+-8.6177138
+Passeio das Virtudes
+Rua Virtudes
+Rua Azevedo de Albuquerque
+Rua Campo dos Martires da Patria
+Rua Francisco da Rocha Soares
+
+Passeio das Virtudes
+130
+41.1441227
+-8.6183353
+Rua Francisco da Rocha Soares
+Rua Azevedo de Albuquerque
+Rua Virtudes
+
+Rua de S Miguel
+130
+41.1434036
+-8.6166777
+Rua da Vitoria
+Rua S Bento da Vitoria
+Rua das Taipas
+
+Rua Francisco da Rocha Soares
+170
+41.1428324
+-8.6185119
+Rua de Belmonte
+Rua Virtudes
+Passeio das Virtudes
+Rua Dr Barbosa de Castro
+
+Travessa de S Sebastiao
+200
+41.1442156
+-8.6113347
+Rua da Bainharia
+Avenida D Afonso Henriques
+
+Rua Adolfo Casais Monteiro
+300
+41.1492117
+-8.6229066
+Rua D Manuel II
+Rua de Miguel Bombarda
+Rua do Breiner
+Rua da Maternidade
+Rua Boa Nova
+
+Rua de Miguel Bombarda
+750
+41.1496156
+-8.6209647
+Rua Boa Nova
+Rua Adolfo Casais Monteiro
+Rua do Rosario
+Rua Diogo Brandao
+Rua Boa Nova
+
+Rua Diogo Brandao
+100
+41.1496156
+-8.6176709
+Travessa Carregal
+Rua de Miguel Bombarda
+
+Travessa Carregal
+130
+41.1487108
+-8.6178748
+Rua Dr Tiago de Almeida
+Rua Diogo Brandao
+
+Rua do Rosario
+500
+41.1498176
+-8.6208681
+Rua Dr Tiago de Almeida
+Rua Dr Alberto Aires de Gouveia
+Rua D Manuel II
+Rua de Miguel Bombarda
+Rua do Breiner
+Rua da Maternidade
+
+Rua do Breiner
+250
+41.1507208
+-8.6207946
+Rua Boa Nova
+Rua Adolfo Casais Monteiro
+Rua do Rosario
+
+Rua da Maternidade
+220
+41.1510625
+-8.6224659
+Rua Boa Nova
+Rua Adolfo Casais Monteiro
+Rua do Rosario
+Rua do Breiner
+
+Rua Boa Nova
+250
+41.1497042
+-8.6242952
+Rua de Miguel Bombarda
+Rua D Manuel II
+Rua do Breiner
+Rua da Maternidade

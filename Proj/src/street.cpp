@@ -27,24 +27,24 @@ Street::Street(string name, int comp, float lat, float lon, vector<string> conne
 	this->id = id;
 }
 
-string Street::getname() const{
+string Street::getName() const{
 	return name;
 }
 
-int Street::getlength(){
+int Street::getLength(){
 	return length;
 }
 
-void Street::setname(string n){
+void Street::setName(string n){
 	this->name = n;
 }
 
-void Street::setlength(int comp){
+void Street::setLength(int comp){
 	this->length = comp;
 }
 
 bool Street::operator==(const Street& r1){
-	if(r1.getname() == name)
+	if(r1.getName() == name)
 		return true;
 	else return false;
 }
@@ -92,12 +92,32 @@ void loadStreets(string filename,Graph<Street*> &graph, list<Street*> &streets){
 
 		while(!file.eof() && file.peek() == '\n')
 			file.ignore();
-
 	}
 	file.close();
-	//Finished
+	graphCreate(graph,streets);
+}
 
-
+void graphCreate(Graph<Street*> &graph, list<Street*> &streets){
+	list<Street*>::iterator it = streets.begin();
+		for(;it != streets.end(); it++){
+			vector<string> connections = (*it)->connections;
+			for(unsigned int i = 0; i < connections.size(); i++){
+				list<Street*>::iterator adj = streets.begin();
+				bool success = false;
+				for(;adj != streets.end(); adj++){
+					if( (*adj)->getName() == connections[i]){
+						success = true;
+						graph.addEdge(*it, *adj, ((float)(*it)->getLength()+(*adj)->getLength())/2 );
+						break;
+					}
+				}
+				if ( ! success){
+					cout << (*it)->getName() << endl;
+					cout << connections[i] << endl;
+					throw ExceptionStreetNotFound();
+				}
+			}
+		}
 
 }
 
