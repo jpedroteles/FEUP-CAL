@@ -72,7 +72,6 @@ void loadStreets(string filename,Graph<Street*> &graph, list<Street*> &streets){
 	Coord coords;
 	int comp;
 	unsigned id = 0;
-	// Reading of street file
 	while(!file.eof()){
 		getline(file, name);
 		file >> comp;
