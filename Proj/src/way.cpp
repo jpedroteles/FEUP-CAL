@@ -5,7 +5,7 @@
 
 using namespace std;
 
-list<wayList> organizePOI(Graph<Street*> graph, list<POI*> POIs){
+list<wayList> ordPOI(Graph<Street*> graph, list<POI*> POIs){
 	list<wayList> organizedPOIs;
 	list<POI*>::iterator it = POIs.begin();
 	for(; it != POIs.end(); it++){
@@ -69,31 +69,31 @@ Graph<POI*> convertToGraph(list<wayList> organizedPOIs){
 }
 
 list<Street*> streetPath(list<wayList> organizedPOIs, list<POI*> orderedPOIs){
-	list<Street*> streetWay;
-	list<POI*> ::iterator it= orderedPOIs.begin();
-	POI* orig;
-	POI* dest;
-	streetWay.push_back(dest->getStreet());
+	list<Street*> streetPath;
+	list<POI*>::iterator it = orderedPOIs.begin();
+	POI* origin;
+	POI* dest = *it;
+	streetPath.push_back(dest->getStreet());
 	it++;
 	for(; it != orderedPOIs.end(); it++){
-		orig = dest;
+		origin = dest;
 		dest = *it;
 		list<wayList>::iterator orgListIt = organizedPOIs.begin();
 		for(; orgListIt != organizedPOIs.end(); orgListIt++){
-			if(orgListIt->pois == orig){
+			if(orgListIt->pois == origin){
 				list<Way>::iterator pathListIt = orgListIt->ways.begin();
 				for(; pathListIt != orgListIt->ways.end(); pathListIt++){
 					if(pathListIt->dest != dest)
 						continue;
 					list<Street*> path = pathListIt->streets;
 					path.pop_front();
-					streetWay.insert(streetWay.end(), path.begin(), path.end());
+					streetPath.insert(streetPath.end(), path.begin(), path.end());
 				}
 				break;
 			}
 		}
 	}
-	return streetWay;
+	return streetPath;
 }
 
 Graph<Street*> graphical(list<Street*> streetPath){

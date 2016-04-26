@@ -5,12 +5,12 @@
 #ifndef POI_H_
 #define POI_H_
 
-#include "street.h";
+#include "street.h"
 
 class POI{
 private:
 	string name;
-	Street * street;
+	Street* street;
 public:
 	POI(string name, Street * street);
 	string getName() const;

@@ -30,7 +30,6 @@ public:
 
 	Street(string name, int comp, Coord coords,vector<string> connections,unsigned id);
 	Street(string name, int comp,float lat,float lon,vector<string> connections,unsigned id);
-
 	string getName() const;
 	void setName(string n);
 	int getLength();
@@ -40,7 +39,6 @@ public:
 	void setCoords(Coord coords);
 	unsigned getId() const;
 	void setId(unsigned id);
-
 };
 
 void loadStreets(string filename,Graph<Street*> &graph, list<Street*> &streets);
