@@ -12,22 +12,23 @@ using namespace std;
 
 float convertCoordy(float coord){
     float y_limit = 41.140;
-    return 600 - (coord - y_limit) * 100000;
+    return 1000 - (coord - y_limit) * 90000;
 }
 
 float convertCoordx(float coord){
     float x_limit = -8.61124;
-    return 600 - (x_limit - coord) * 100000;
+    return 850 - (x_limit - coord) * 55000;
 }
 
 void view_Graph(Graph<Street*> graph) {
 	unsigned idE = 0;
 	unsigned idV = 0;
 	float window_size = 3000;
-	GraphViewer *gv = new GraphViewer(600, 600, false);
+	GraphViewer *gv = new GraphViewer(500, 500, false);
+	gv->setBackground("background.jpg");
 	gv->createWindow(600, 600);
 	gv->defineVertexColor("blue");
-	gv->defineEdgeColor("black");
+	gv->defineEdgeColor("white");
 
 	vector<Vertex<Street*> *> vertexes = graph.getVertexSet();
 	for (unsigned int i = 0; i < vertexes.size(); i++){
