@@ -27,8 +27,8 @@ struct wayList{
 	list<Way> ways;
 };
 
-list<wayList> ordPOI(Graph<Street*> graph, list<POI*> POIs);
-
+list<wayList> organizePOI(Graph<Street*> graph, list<POI*> POIs);
+Graph<POI*> convertToGraph(list<wayList> organizedPOIs);
 Graph<POI*> pathListToGraph(list<wayList> organizedPOIs);
 
 list<Street*> streetPath(list<wayList> organizedPOIs, list<POI*> orderedPOIs);
