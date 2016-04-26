@@ -11,5 +11,3 @@ bool sortPOI(Coord c1, Coord c2){
 		return c1.longitude < c2.longitude;
 	return c1.longitude < c2.longitude;
 }
-
-
