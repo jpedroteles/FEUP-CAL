@@ -10,6 +10,16 @@
 using namespace std;
 
 
+float convertCoordy(float coord){
+    float y_limit = 41.140;
+    return 600 - (coord - y_limit) * 100000;
+}
+
+float convertCoordx(float coord){
+    float x_limit = -8.61124;
+    return 600 - (x_limit - coord) * 100000;
+}
+
 void view_Graph(Graph<Street*> graph) {
 	unsigned idE = 0;
 	unsigned idV = 0;
@@ -21,7 +31,7 @@ void view_Graph(Graph<Street*> graph) {
 
 	vector<Vertex<Street*> *> vertexes = graph.getVertexSet();
 	for (unsigned int i = 0; i < vertexes.size(); i++){
-		//gv->addNode(i, convert_coordinates_x(vertexes[i]->getInfo()->getCoords().longitude), convert_coordinates_y(vertexes[i]->getInfo()->getCoords().latitude));
+		gv->addNode(i, convertCoordx(vertexes[i]->getInfo()->getCoords().longitude), convertCoordy(vertexes[i]->getInfo()->getCoords().latitude));
 		gv->setVertexLabel(i,vertexes[i]->getInfo()->getName());
 	}
 	gv->rearrange();
@@ -33,5 +43,15 @@ void view_Graph(Graph<Street*> graph) {
 		}
 	}
 	gv->rearrange();
+}
+
+int main(){
+	Graph<Street*> graph;
+	list<Street*> streets;
+
+	loadStreets("ruas.txt", graph,streets);
+	view_Graph(graph);
+	getchar();
+	return 0;
 }
 

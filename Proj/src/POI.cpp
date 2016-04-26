@@ -50,6 +50,5 @@ void loadPOIs(string filename, list<POI*> &vecPOI, list<Street*> &streets){
 		POI * poi = new POI(name, street);
 		vecPOI.push_back(poi);
 	}
-
 	file.close();
 }
