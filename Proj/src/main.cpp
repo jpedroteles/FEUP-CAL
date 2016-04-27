@@ -97,10 +97,6 @@ void displaySelectedWay(Graph<Street*> graph, list<wayList> organizedPOIs,
 		if (it2 == way.end()) {
 			gv->setVertexColor(vOrigem->getInfo()->getId(), "red");
 		} else {
-			cout << "vOrigem = " << vOrigem->getInfo()->getName() << endl;
-			cout << "vDestino = " << vDestino->getInfo()->getName() << endl
-					<< endl;
-
 			for (size_t i = 0; i < vOrigem->getAdj().size(); i++) {
 				if (vOrigem->getAdj()[i].getDest()->getInfo()->getName()
 						== vDestino->getInfo()->getName()) {

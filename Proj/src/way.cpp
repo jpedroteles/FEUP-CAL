@@ -22,9 +22,7 @@ list<wayList> ordPOI(Graph<Street*> graph, list<POI*> POIs) {
 			POI* dest = *it2;
 			Way way;
 			way.orig = p;
-			//cout << "POI1: " << p->getName() << endl;
 			way.dest = dest;
-			//cout << "POI2: " << dest->getName() << endl;
 			Vertex<Street*> * v = graph.getVertex(dest->getStreet());
 			way.dist = v->getDist();
 			way.streets.push_front(v->getInfo());
@@ -33,7 +31,6 @@ list<wayList> ordPOI(Graph<Street*> graph, list<POI*> POIs) {
 				if (v == NULL)
 					break;
 				way.streets.push_front(v->getInfo());
-				//cout << "Street: " << v->getInfo()->getName() << endl;
 			} while (v->getDist() != 0);
 			wlist.ways.push_front(way);
 		}
