@@ -1,7 +1,8 @@
 Avenida dos Aliados
 450
 41.1486516
--8.6112400
+-8.6110400
+Avenida D Afonso Henriques
 Praca Filipa de Lencastre
 Rua da Fabrica
 Rua dos Clerigos
@@ -11,7 +12,7 @@ Rua Trindade Coelho
 
 Rua dos Clerigos
 210
-41.1459855
+41.1465855
 -8.6123639
 Rua de 31 de Janeiro
 Rua Conde de Vizela

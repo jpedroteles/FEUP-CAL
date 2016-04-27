@@ -5,10 +5,10 @@
 
 using namespace std;
 
-list<wayList> ordPOI(Graph<Street*> graph, list<POI*> POIs){
+list<wayList> ordPOI(Graph<Street*> graph, list<POI*> POIs) {
 	list<wayList> organizedPOIs;
 	list<POI*>::iterator it = POIs.begin();
-	for(; it != POIs.end(); it++){
+	for (; it != POIs.end(); it++) {
 		POI* p = *it;
 		// Funcao das aulas praticas para escolher o caminho mais curto
 		graph.dijkstraShortestPath(p->getStreet());
@@ -16,22 +16,25 @@ list<wayList> ordPOI(Graph<Street*> graph, list<POI*> POIs){
 		wayList wlist;
 		wlist.pois = p;
 		list<POI*>::iterator it2 = POIs.begin();
-		for(; it2 != POIs.end(); it2++){
-			if(*it == *it2)
+		for (; it2 != POIs.end(); it2++) {
+			if (*it == *it2)
 				continue;
 			POI* dest = *it2;
 			Way way;
 			way.orig = p;
+			//cout << "POI1: " << p->getName() << endl;
 			way.dest = dest;
+			//cout << "POI2: " << dest->getName() << endl;
 			Vertex<Street*> * v = graph.getVertex(dest->getStreet());
 			way.dist = v->getDist();
 			way.streets.push_front(v->getInfo());
-			do{
+			do {
 				v = v->path;
-				if(v == NULL)
+				if (v == NULL)
 					break;
 				way.streets.push_front(v->getInfo());
-			}while(v->getDist() != 0);
+				//cout << "Street: " << v->getInfo()->getName() << endl;
+			} while (v->getDist() != 0);
 			wlist.ways.push_front(way);
 		}
 		organizedPOIs.push_back(wlist);
@@ -39,13 +42,13 @@ list<wayList> ordPOI(Graph<Street*> graph, list<POI*> POIs){
 	return organizedPOIs;
 }
 
-Graph<POI*> convertToGraph(list<wayList> organizedPOIs){
+Graph<POI*> convertToGraph(list<wayList> organizedPOIs) {
 	Graph<POI*> graph;
 	list<wayList>::iterator it = organizedPOIs.begin();
 	POI* poi = it->pois;
 	graph.addVertex(poi);
 	list<Way>::iterator path = it->ways.begin();
-	for(; path != it->ways.end(); path++){
+	for (; path != it->ways.end(); path++) {
 		POI* dest = path->dest;
 		if (dest == poi)
 			continue;
@@ -53,12 +56,12 @@ Graph<POI*> convertToGraph(list<wayList> organizedPOIs){
 		graph.addEdge(poi, dest, path->dist);
 	}
 	it++;
-	for(; it != organizedPOIs.end(); it++){
+	for (; it != organizedPOIs.end(); it++) {
 		POI* poi = it->pois;
-		if(graph.getVertex(poi) == NULL)
+		if (graph.getVertex(poi) == NULL)
 			graph.addVertex(poi);
 		list<Way>::iterator path = it->ways.begin();
-		for(; path != it->ways.end(); path++){
+		for (; path != it->ways.end(); path++) {
 			POI* dest = path->dest;
 			if (dest == poi)
 				continue;
@@ -68,46 +71,63 @@ Graph<POI*> convertToGraph(list<wayList> organizedPOIs){
 	return graph;
 }
 
-list<Street*> streetPath(list<wayList> organizedPOIs, list<POI*> orderedPOIs){
+list<Street*> streetPath(list<wayList> organizedPOIs, list<POI*> orderedPOIs) {
 	list<Street*> streetPath;
 	list<POI*>::iterator it = orderedPOIs.begin();
 	POI* origin;
 	POI* dest = *it;
 	streetPath.push_back(dest->getStreet());
 	it++;
-	for(; it != orderedPOIs.end(); it++){
+	for (; it != orderedPOIs.end(); it++) {
 		origin = dest;
 		dest = *it;
 		list<wayList>::iterator orgListIt = organizedPOIs.begin();
-		for(; orgListIt != organizedPOIs.end(); orgListIt++){
-			if(orgListIt->pois == origin){
+		for (; orgListIt != organizedPOIs.end(); orgListIt++) {
+			if (orgListIt->pois == origin) {
 				list<Way>::iterator pathListIt = orgListIt->ways.begin();
-				for(; pathListIt != orgListIt->ways.end(); pathListIt++){
-					if(pathListIt->dest != dest)
+				for (; pathListIt != orgListIt->ways.end(); pathListIt++) {
+					if (pathListIt->dest != dest)
 						continue;
 					list<Street*> path = pathListIt->streets;
-					path.pop_front();
-					streetPath.insert(streetPath.end(), path.begin(), path.end());
+
+					while (!path.empty()) {
+						streetPath.insert(streetPath.end(), path.front());
+						path.pop_front();
+					}
 				}
 				break;
 			}
 		}
 	}
+
+	//Remove duplicados
+	for (list<Street*>::iterator it = streetPath.begin();
+			it != streetPath.end(); it++) {
+		list<Street*>::iterator it2 = it;
+		it2++;
+		if (it2 != streetPath.end() && (*it)->getName() == (*it2)->getName()) {
+			streetPath.erase(it2);
+			it--;
+			continue;
+		}
+	}
 	return streetPath;
 }
 
-Graph<Street*> graphical(list<Street*> streetPath){
-	Graph<Street*>retGraph;
+Graph<Street*> graphical(list<Street*> streetPath) {
+	Graph<Street*> retGraph;
 	list<Street*>::iterator circuitIt = streetPath.begin();
 	Street* previousStreet;
 	Street* currentStreet = *circuitIt;
 	retGraph.addVertex(currentStreet);
 	circuitIt++;
-	for(; circuitIt != streetPath.end(); circuitIt++){
+	for (; circuitIt != streetPath.end(); circuitIt++) {
 		previousStreet = currentStreet;
 		currentStreet = *circuitIt;
 		retGraph.addVertex(currentStreet);
-		retGraph.addEdge(previousStreet, currentStreet, ((double) previousStreet->getLength() + currentStreet->getLength())/2 );
+		retGraph.addEdge(previousStreet, currentStreet,
+				((double) previousStreet->getLength()
+						+ currentStreet->getLength()) / 2);
 	}
 	return retGraph;
 }
