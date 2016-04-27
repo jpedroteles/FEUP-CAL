@@ -50,6 +50,7 @@ public:
 	void setDist(int dist);
 	int getIndegree() const;
 	vector<Edge<T> > getAdj();
+	void setDrawn(int edge);
 
 	Vertex* path;
 };
@@ -119,6 +120,11 @@ int Vertex<T>::getIndegree() const {
 template<class T>
 vector<Edge<T> > Vertex<T>::getAdj() {
 	return this->adj;
+}
+
+template<class T>
+void Vertex<T>::setDrawn(int edge){
+	this->adj[edge].setDrawn();
 }
 
 /* ================================================================================================

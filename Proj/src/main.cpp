@@ -104,19 +104,7 @@ void displaySelectedWay(Graph<Street*> graph, list<wayList> organizedPOIs,
 			for (size_t i = 0; i < vOrigem->getAdj().size(); i++) {
 				if (vOrigem->getAdj()[i].getDest()->getInfo()->getName()
 						== vDestino->getInfo()->getName()) {
-					cout << "Drawn1 = ";
-					if (vOrigem->getAdj()[i].isDrawn())
-						cout << "True" << endl;
-					else
-						cout << "False" << endl;
-					vOrigem->getAdj()[i].setDrawn();
-					cout << "Drawn2 = ";
-					if (vOrigem->getAdj()[i].isDrawn())
-						cout << "True" << endl;
-					else
-						cout << "False" << endl;
-					cout << endl;
-
+					vOrigem->setDrawn(i);
 					gv->addEdge(idE, vOrigem->getInfo()->getId(),
 							vDestino->getInfo()->getId(), EdgeType::DIRECTED);
 					gv->setEdgeColor(idE, "yellow");
