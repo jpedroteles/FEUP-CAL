@@ -53,3 +53,23 @@ void loadPOIs(string filename, list<POI*> &vecPOI, list<Street*> &streets){
 
 	file.close();
 }
+
+void loadRoute(string filename, list<POI*> &vecRoute, list<POI*> &vecPOI){
+	ifstream file;
+	file.open(filename.c_str());
+	string name,streename;
+	int i = 0;
+
+	while(!file.eof()){
+		getline(file, name);
+
+		list<POI*>::iterator it = vecPOI.begin();
+		POI* poi;
+		for(;it != vecPOI.end();it++)
+			if((*it)->getName() == name)
+				poi = *it;
+		if(poi == NULL)
+			throw ExceptionPOINotFound();
+		vecRoute.push_back(poi);
+	}
+}

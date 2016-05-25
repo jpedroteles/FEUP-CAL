@@ -58,13 +58,16 @@ void displaySelectedWay(Graph<Street*> graph, list<wayList> organizedPOIs,
 		gv->addNode(i,
 				convertCoordx(vertexes[i]->getInfo()->getCoords().longitude),
 				convertCoordy(vertexes[i]->getInfo()->getCoords().latitude));
-		gv->setVertexLabel(i, vertexes[i]->getInfo()->getName());
+		if (i == 0)
+			gv->setVertexLabel(i, ".");
+		else
+			gv->setVertexLabel(i, vertexes[i]->getInfo()->getName());
 	}
 
-	for (unsigned int i = 0; i < vertexes.size(); i++) {
+	for (unsigned int i = 1; i < vertexes.size(); i++) {
 		for (list<wayList>::iterator it = organizedPOIs.begin();
 				it != organizedPOIs.end(); it++) {
-			if (i == 0) {
+			if (i == 1) {
 				gv->setVertexColor(vertexes[i]->getInfo()->getId(), "green");
 				continue;
 			}
@@ -76,12 +79,11 @@ void displaySelectedWay(Graph<Street*> graph, list<wayList> organizedPOIs,
 	}
 	gv->rearrange();
 
-	int edgeNumber = 1;
+	int edgeNumber = 0;
 	way.insert(way.begin(), vertexes[0]->getInfo());
 	for (list<Street*>::iterator it = way.begin(); it != way.end(); it++) {
 		list<Street*>::iterator it2 = it;
 		it2++;
-
 
 		Vertex<Street*>* vOrigem;
 		Vertex<Street*>* vDestino;
@@ -125,6 +127,17 @@ void displaySelectedWay(Graph<Street*> graph, list<wayList> organizedPOIs,
 	gv->rearrange();
 }
 
+string enterName() {
+	string name;
+
+	do {
+		cout << "Introduza o nome do passageiro:" << endl;
+		getline(cin, name);
+	} while (name.empty());
+
+	return name;
+}
+
 int main() {
 	Graph<Street*> graph;
 	list<Street*> streets;
@@ -133,13 +146,22 @@ int main() {
 	loadStreets("ruas.txt", graph, streets);
 	loadPOIs("pois.txt", POIs, streets);
 
-	list<wayList> organizedPOIs = ordPOI(graph, POIs);
+	list<POI*> route;
+	loadRoute("itinerario1.txt", route, POIs);
+
+	list<wayList> organizedPOIs = ordPOI(graph, route);
 	Graph<POI*> poiGraph = convertToGraph(organizedPOIs);
 	list<POI*> orderedPOIs = poiGraph.branchAndBoundSmallestCircuit();
 	list<Street*> way = streetPath(organizedPOIs, orderedPOIs);
 
-	displaySelectedWay(graph, organizedPOIs, way);
+	//string name = enterName();
 
+	list<POI*>::iterator it = orderedPOIs.begin();
+	for (it; it != orderedPOIs.end(); it++) {
+		cout << (*it)->getName() << endl;
+	}
+
+	displaySelectedWay(graph, organizedPOIs, way);
 	getchar();
 	return 0;
 }

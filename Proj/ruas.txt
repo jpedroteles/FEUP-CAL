@@ -1,3 +1,9 @@
+Inicio
+0
+41.1486516
+-8.6110400
+Avenida dos Aliados
+
 Avenida dos Aliados
 450
 41.1486516

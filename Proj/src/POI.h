@@ -7,6 +7,8 @@
 
 #include "street.h"
 
+class ExceptionPOINotFound{};
+
 class POI{
 private:
 	string name;
@@ -21,5 +23,6 @@ public:
 };
 
 void loadPOIs(string filename, list<POI*> &vecPOI, list<Street*> &streets);
+void loadRoute(string filename, list<POI*> &vecRoute, list<POI*> &vecPOI);
 
 #endif /* POI_H_ */

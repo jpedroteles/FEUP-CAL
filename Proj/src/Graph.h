@@ -123,7 +123,7 @@ vector<Edge<T> > Vertex<T>::getAdj() {
 }
 
 template<class T>
-void Vertex<T>::setDrawn(int edge){
+void Vertex<T>::setDrawn(int edge) {
 	this->adj[edge].setDrawn();
 }
 
@@ -168,7 +168,7 @@ bool Edge<T>::operator<(const Edge<T> &b) const {
 }
 
 template<class T>
-bool Edge<T>::isDrawn(){
+bool Edge<T>::isDrawn() {
 	return this->drawn;
 }
 template<class T>
@@ -637,6 +637,7 @@ list<T> Graph<T>::branchAndBoundSmallestCircuit() {
 	}
 
 	list<T> retList;
+
 	typename list<Vertex<T>*>::iterator it = best.begin();
 	for (; it != best.end(); it++)
 		retList.push_back((*it)->info);
@@ -655,7 +656,7 @@ void Graph<T>::branchAndBound(list<Vertex<T>*> &best, int &bestDist,
 			continue;
 		allVisited = false;
 		if (v->adj[i].weight + dist > bestDist)
-			break; //Como tem que passar por todos os pontos, se o caminho de um ponto para o outro já ultrapassa a distância, então não vale a pena continuar
+			break; //Como tem que passar por todos os pontos, se o caminho de um ponto para o outro ja ultrapassa a distancia, entao nao vale a pena continuar
 
 		current.push_back(v->adj[i].dest);
 		branchAndBound(best, bestDist, current, v->adj[i].weight + dist);
