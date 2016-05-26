@@ -2,19 +2,7 @@
  * menu.cpp
  */
 
-#include <string>
-#include <vector>
-#include <iostream>
-#include <algorithm>
-#include <fstream>
-#include <sstream>
-
-#include "graphviewer.h"
-#include "Graph.h"
-#include "street.h"
-#include "POI.h"
-#include "utils.h"
-#include "way.h"
+#include "menu.h"
 
 using namespace std;
 
@@ -27,36 +15,20 @@ void welcome()
 	cout <<  "   \\ V  V /  __/ | (_| (_) | | | | | |  __/" << endl;
 	cout <<  "    \\_/\\_/ \\___|_|\\___\\___/|_| |_| |_|\\___|" << endl << endl << endl;
 
-	//load all "configs"
-	Graph<Street*> graph;
-	list<Street*> streets;
-	list<POI*> POIs;
-
-	loadStreets("ruas.txt", graph, streets);
-	loadPOIs("pois.txt", POIs, streets);
-
-	list<POI*> route;
-	loadRoute("itinerario1.txt", route, POIs);
-
-	list<wayList> organizedPOIs = ordPOI(graph, route);
-	Graph<POI*> poiGraph = convertToGraph(organizedPOIs);
-	list<POI*> orderedPOIs = poiGraph.branchAndBoundSmallestCircuit();
-	list<Street*> way = streetPath(organizedPOIs, orderedPOIs);
-
-
+	Options();
 }
 
 void Options()
 {
+	cout <<  endl;
 	bool valid = false;
 	int yourchoice;
-	system("CLS");
 
 	cout << "1. See itinerary" << endl;
 	cout << "2. See passengers" << endl;
 	cout << "3. Search itinerary" << endl;
 	cout << "4. Search passengers" << endl;
-	cout << "6. Return" << endl << endl;
+	cout << "5. Return" << endl << endl;
 	do
 	{
 		cout << "Choose one of those options: ";
@@ -74,21 +46,50 @@ void Options()
 			}
 			cout << endl << "Invalid option" << endl << endl;
 			Sleep(1000);
-			//Options()
+			Options();
 		}
 	}
 	while (!valid);
 
 	if (yourchoice == 1)
-		//cenas
+		listPoi();
 	if (yourchoice == 2)
 		//cenas
-	if (yourchoice == 3)
-		//cenas
-	if (yourchoice == 4)
-		//cenas
-	if (yourchoice == 5)
-		//cenas
-	if (yourchoice == 6)
-		welcome();
+		if (yourchoice == 3)
+			//cenas
+			if (yourchoice == 4)
+				//cenas
+				if (yourchoice == 5)
+					welcome();
+}
+
+string enterName() {
+	string name;
+
+	do {
+		cout << "Introduza o nome do passageiro:" << endl;
+		getline(cin, name);
+	} while (name.empty());
+
+	return name;
+}
+
+void listPoi(){
+	list<POI*> POIs;
+	Graph<Street*> graph;
+	list<POI*> route;
+	list<Street*> streets;
+	loadStreets("ruas.txt", graph, streets);
+	loadPOIs("pois.txt", POIs, streets);
+	loadRoute("itinerario1.txt", route, POIs);
+	list<wayList> organizedPOIs = ordPOI(graph, route);
+	Graph<POI*> poiGraph = convertToGraph(organizedPOIs);
+	list<POI*> orderedPOIs = poiGraph.branchAndBoundSmallestCircuit();
+	list<POI*>::iterator it = orderedPOIs.begin();
+
+	for (it; it != orderedPOIs.end(); it++) {
+		cout << (*it)->getName() << endl;
+	}
+	cout <<  endl;
+	Options();
 }

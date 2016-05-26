@@ -128,23 +128,10 @@ void displaySelectedWay(Graph<Street*> graph, list<wayList> organizedPOIs,
 	gv->rearrange();
 }
 
-string enterName() {
-	string name;
-
-	do {
-		cout << "Introduza o nome do passageiro:" << endl;
-		getline(cin, name);
-	} while (name.empty());
-
-	return name;
-}
 
 int main() {
 
 	welcome();
-	Options();
-	//string name = enterName();
-
 
 	//displaySelectedWay(graph, organizedPOIs, way);
 	getchar();
