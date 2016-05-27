@@ -2,14 +2,7 @@
  * matcher.cpp
  */
 
-#include <string>
-#include <vector>
-#include <iostream>
-#include <algorithm>
-#include <fstream>
-#include <sstream>
-
-using namespace std;
+#include "matcher.h"
 
 int kmp(string text, string pattern){
 	int num=0;

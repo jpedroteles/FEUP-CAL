@@ -19,6 +19,7 @@
 #include "POI.h"
 #include "utils.h"
 #include "way.h"
+#include "matcher.h"
 
 
 using namespace std;
@@ -26,6 +27,9 @@ using namespace std;
 void welcome();
 void Options();
 void listPoi();
+string enterName();
+string searchpassengers();
+
 
 
 

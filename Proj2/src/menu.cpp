@@ -58,14 +58,13 @@ void Options()
 		if (yourchoice == 3)
 			//cenas
 			if (yourchoice == 4)
-				//cenas
+				enterName();
 				if (yourchoice == 5)
 					welcome();
 }
 
 string enterName() {
 	string name;
-
 	do {
 		cout << "Introduza o nome do passageiro:" << endl;
 		getline(cin, name);
@@ -86,10 +85,20 @@ void listPoi(){
 	Graph<POI*> poiGraph = convertToGraph(organizedPOIs);
 	list<POI*> orderedPOIs = poiGraph.branchAndBoundSmallestCircuit();
 	list<POI*>::iterator it = orderedPOIs.begin();
-
+	cout <<  endl;
 	for (it; it != orderedPOIs.end(); it++) {
 		cout << (*it)->getName() << endl;
 	}
-	cout <<  endl;
+
 	Options();
+}
+
+string searchpassengers(){
+	string toSearch=enterName();
+
+	cout <<endl <<numStringMatching("passageiros.txt", toSearch)<<endl;
+
+
+
+	return NULL;
 }
