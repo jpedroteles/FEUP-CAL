@@ -8,6 +8,8 @@ using namespace std;
 
 #define NUM_ROUTES 5
 
+pair<string, int> passengerInfo;
+
 void welcome() {
 	cout << endl << endl;
 	cout << " __        __   _                          " << endl;
@@ -17,6 +19,12 @@ void welcome() {
 	cout << "    \\_/\\_/ \\___|_|\\___\\___/|_| |_| |_|\\___|" << endl << endl
 			<< endl;
 
+	cout << "LOGIN:" << endl;
+	string name = enterName();
+	int routeNumber = searchPassengerRoute(name);
+
+	passengerInfo = make_pair(name, routeNumber);
+
 	Options();
 }
 
@@ -25,15 +33,17 @@ void Options() {
 	bool valid = false;
 	int yourChoice;
 
-	cout << "1. See itinerary" << endl;
-	cout << "2. See passengers" << endl;
-	cout << "3. Search itinerary" << endl;
-	cout << "4. Search passengers" << endl;
-	cout << "5. Exit" << endl << endl;
+	cout << "1. Display passenger info" << endl;
+	cout << "2. Select a route" << endl;
+	cout << "3. List routes" << endl;
+	cout << "4. List passengers" << endl;
+	cout << "5. Search \"Point of Interest\"" << endl;
+	cout << "6. Search passengers" << endl;
+	cout << "7. Exit" << endl << endl;
 	do {
 		cout << "Choose one of these options: ";
 		cin >> yourChoice;
-		if (yourChoice >= 1 && yourChoice <= 6)
+		if (yourChoice >= 1 && yourChoice <= 7)
 			valid = true;
 		else
 
@@ -51,36 +61,54 @@ void Options() {
 
 	switch (yourChoice) {
 	case 1:
-		listItinerary();
+		displayPassengerInfo();
 		break;
 	case 2:
-		listPassengers();
 		break;
 	case 3:
+		listRoutes();
 		break;
 	case 4:
-		enterName();
+		listPassengers();
 		break;
 	case 5:
-		return;
+		break;
+	case 6:
+		searchPassengers();
+		break;
+	case 7:
+		saveData();
 		break;
 	default:
 		break;
 	}
 }
 
+void displayPassengerInfo() {
+	cout << "\nPassenger Info:\n" << endl;
+
+	cout << "Name - " << passengerInfo.first << endl;
+	if (passengerInfo.second == 0)
+		cout << "You haven't selected a route yet." << endl;
+	else
+		cout << "Route - " << passengerInfo.second << endl;
+
+	Options();
+}
+
 string enterName() {
 	string name;
+	fflush(stdin);
 	do {
-		cout << "Introduza o nome do passageiro:" << endl;
+		cout << "Enter passenger name: ";
 		getline(cin, name);
 	} while (name.empty());
 
 	return name;
 }
 
-void listItinerary() {
-	cout << "Number of routes = " << NUM_ROUTES << endl;
+void listRoutes() {
+	cout << "\nNumber of routes = " << NUM_ROUTES << "\n" << endl;
 
 	int choice = 0;
 	do {
@@ -129,8 +157,7 @@ void listPassengers() {
 	string route;
 	int i = 0;
 
-	while (!file.eof()) {
-		getline(file, name);
+	while (getline(file, name)) {
 		getline(file, route);
 		i++;
 
@@ -141,10 +168,54 @@ void listPassengers() {
 
 	Options();
 }
-string searchpassengers() {
+void searchPassengers() {
 	string toSearch = enterName();
 
-	cout << endl << numStringMatching("passageiros.txt", toSearch) << endl;
+	vector<pair<string, int> > matches = numStringMatchingPassengers(toSearch);
 
-	return NULL;
+	cout << "\nNumber of matches = " << matches.size() << endl;
+
+	if (matches.empty()) {
+
+	}
+	cout << setw(18) << left << "\nName" << "Route" << endl;
+	for (size_t i = 0; i < matches.size(); i++) {
+		cout << setw(20) << left << matches[i].first << matches[i].second
+				<< endl;
+	}
+
+	Options();
+}
+
+void saveData() {
+
+	vector<pair<string, int> > passengers;
+
+	ifstream fileIn("passageiros.txt");
+	if (!fileIn.is_open()) {
+		cout << "ERROR: Can't open passengers file!" << endl;
+		return;
+	}
+
+	string lineName;
+	string lineRoute;
+
+	while (getline(fileIn, lineName)) {
+		getline(fileIn, lineRoute);
+		if (lineName == passengerInfo.first)
+			passengers.push_back(
+					make_pair(passengerInfo.first, passengerInfo.second));
+		else
+			passengers.push_back(make_pair(lineName, atoi(lineRoute.c_str())));
+	}
+
+	sort(passengers.begin(), passengers.end());
+
+	fileIn.close();
+	ofstream fileOut("passageiros.txt", ios::trunc);
+	for (size_t i = 0; i < passengers.size(); i++) {
+		fileOut << passengers[i].first << endl;
+		fileOut << passengers[i].second << endl;
+	}
+
 }

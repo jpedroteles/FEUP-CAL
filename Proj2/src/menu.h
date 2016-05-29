@@ -27,12 +27,15 @@ using namespace std;
 
 void welcome();
 void Options();
-void listItinerary();
+void displayPassengerInfo();
+void listRoutes();
 void listPassengers();
 void displaySelectedWay(Graph<Street*> graph, list<wayList> organizedPOIs,
 		list<Street*> way);
 string enterName();
-string searchpassengers();
+void searchPassengers();
+
+void saveData();
 
 
 
