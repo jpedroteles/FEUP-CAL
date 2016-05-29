@@ -51,9 +51,10 @@ void Options() {
 
 	switch (yourChoice) {
 	case 1:
-		listPoi();
+		listItinerary();
 		break;
 	case 2:
+		listPassengers();
 		break;
 	case 3:
 		break;
@@ -78,7 +79,7 @@ string enterName() {
 	return name;
 }
 
-void listPoi() {
+void listItinerary() {
 	cout << "Number of routes = " << NUM_ROUTES << endl;
 
 	int choice = 0;
@@ -118,6 +119,28 @@ void listPoi() {
 	Options();
 }
 
+void listPassengers() {
+	cout << "List of passengers:\n" << endl;
+	cout << setw(18) << left << "Name" << "Route" << endl;
+
+	ifstream file;
+	file.open("passageiros.txt");
+	string name;
+	string route;
+	int i = 0;
+
+	while (!file.eof()) {
+		getline(file, name);
+		getline(file, route);
+		i++;
+
+		cout << setw(20) << left << name << route << endl;
+	}
+
+	cout << "\nNumber of passengers = " << i << endl;
+
+	Options();
+}
 string searchpassengers() {
 	string toSearch = enterName();
 

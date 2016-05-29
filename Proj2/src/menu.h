@@ -12,6 +12,7 @@
 #include <fstream>
 #include <sstream>
 #include <stdlib.h>
+#include <iomanip>
 
 #include "graphviewer.h"
 #include "Graph.h"
@@ -26,7 +27,8 @@ using namespace std;
 
 void welcome();
 void Options();
-void listPoi();
+void listItinerary();
+void listPassengers();
 void displaySelectedWay(Graph<Street*> graph, list<wayList> organizedPOIs,
 		list<Street*> way);
 string enterName();
