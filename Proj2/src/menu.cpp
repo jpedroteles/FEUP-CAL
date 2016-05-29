@@ -6,40 +6,39 @@
 
 using namespace std;
 
-void welcome()
-{
-	cout << endl <<  endl;
-	cout <<  " __        __   _                          " << endl;
-	cout <<  " \\ \\      / /__| | ___ ___  _ __ ___   ___ " << endl;
-	cout <<  "  \\ \\ /\\ / / _ \\ |/ __/ _ \\| '_ ` _ \\ / _ \\" << endl;
-	cout <<  "   \\ V  V /  __/ | (_| (_) | | | | | |  __/" << endl;
-	cout <<  "    \\_/\\_/ \\___|_|\\___\\___/|_| |_| |_|\\___|" << endl << endl << endl;
+#define NUM_ROUTES 5
+
+void welcome() {
+	cout << endl << endl;
+	cout << " __        __   _                          " << endl;
+	cout << " \\ \\      / /__| | ___ ___  _ __ ___   ___ " << endl;
+	cout << "  \\ \\ /\\ / / _ \\ |/ __/ _ \\| '_ ` _ \\ / _ \\" << endl;
+	cout << "   \\ V  V /  __/ | (_| (_) | | | | | |  __/" << endl;
+	cout << "    \\_/\\_/ \\___|_|\\___\\___/|_| |_| |_|\\___|" << endl << endl
+			<< endl;
 
 	Options();
 }
 
-void Options()
-{
-	cout <<  endl;
+void Options() {
+	cout << endl;
 	bool valid = false;
-	int yourchoice;
+	int yourChoice;
 
 	cout << "1. See itinerary" << endl;
 	cout << "2. See passengers" << endl;
 	cout << "3. Search itinerary" << endl;
 	cout << "4. Search passengers" << endl;
-	cout << "5. Return" << endl << endl;
-	do
-	{
-		cout << "Choose one of those options: ";
-		cin >> yourchoice;
-		if (yourchoice >= 1 && yourchoice <= 6)
+	cout << "5. Exit" << endl << endl;
+	do {
+		cout << "Choose one of these options: ";
+		cin >> yourChoice;
+		if (yourChoice >= 1 && yourChoice <= 6)
 			valid = true;
 		else
 
 		{
-			if (cin.fail())
-			{
+			if (cin.fail()) {
 				cin.clear();
 				cin.ignore(1000, '\n');
 
@@ -48,19 +47,25 @@ void Options()
 			Sleep(1000);
 			Options();
 		}
-	}
-	while (!valid);
+	} while (!valid);
 
-	if (yourchoice == 1)
+	switch (yourChoice) {
+	case 1:
 		listPoi();
-	if (yourchoice == 2)
-		//cenas
-		if (yourchoice == 3)
-			//cenas
-			if (yourchoice == 4)
-				enterName();
-				if (yourchoice == 5)
-					welcome();
+		break;
+	case 2:
+		break;
+	case 3:
+		break;
+	case 4:
+		enterName();
+		break;
+	case 5:
+		return;
+		break;
+	default:
+		break;
+	}
 }
 
 string enterName() {
@@ -73,32 +78,50 @@ string enterName() {
 	return name;
 }
 
-void listPoi(){
-	list<POI*> POIs;
+void listPoi() {
+	cout << "Number of routes = " << NUM_ROUTES << endl;
+
+	int choice = 0;
+	do {
+		cout << "Select a route number: ";
+		cin >> choice;
+	} while (choice <= 0 || choice > NUM_ROUTES);
+
 	Graph<Street*> graph;
-	list<POI*> route;
 	list<Street*> streets;
+	list<POI*> POIs;
+
 	loadStreets("ruas.txt", graph, streets);
 	loadPOIs("pois.txt", POIs, streets);
-	loadRoute("itinerario1.txt", route, POIs);
+
+	list<POI*> route;
+
+	string path = "itinerario";
+	path += intToString(choice) + ".txt";
+	loadRoute(path, route, POIs);
+
 	list<wayList> organizedPOIs = ordPOI(graph, route);
 	Graph<POI*> poiGraph = convertToGraph(organizedPOIs);
 	list<POI*> orderedPOIs = poiGraph.branchAndBoundSmallestCircuit();
+	list<Street*> way = streetPath(organizedPOIs, orderedPOIs);
+
+	cout << "\nRoute " << choice << ":\n" << "Avenida dos Aliados";
+
 	list<POI*>::iterator it = orderedPOIs.begin();
-	cout <<  endl;
-	for (it; it != orderedPOIs.end(); it++) {
-		cout << (*it)->getName() << endl;
+	for (it++; it != orderedPOIs.end(); it++) {
+		cout << " - " << (*it)->getName();
 	}
+	cout << endl;
+
+	displaySelectedWay(graph, organizedPOIs, way);
 
 	Options();
 }
 
-string searchpassengers(){
-	string toSearch=enterName();
+string searchpassengers() {
+	string toSearch = enterName();
 
-	cout <<endl <<numStringMatching("passageiros.txt", toSearch)<<endl;
-
-
+	cout << endl << numStringMatching("passageiros.txt", toSearch) << endl;
 
 	return NULL;
 }

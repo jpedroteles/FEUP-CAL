@@ -27,6 +27,8 @@ using namespace std;
 void welcome();
 void Options();
 void listPoi();
+void displaySelectedWay(Graph<Street*> graph, list<wayList> organizedPOIs,
+		list<Street*> way);
 string enterName();
 string searchpassengers();
 

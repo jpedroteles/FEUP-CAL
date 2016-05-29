@@ -15,6 +15,11 @@
 #include "edgetype.h"
 #include "connection.h"
 
+#include "Graph.h"
+#include "street.h"
+#include "POI.h"
+#include "way.h"
+
 #define BLUE "BLUE"
 #define RED "RED"
 #define PINK "PINK"
@@ -187,6 +192,15 @@ class GraphViewer {
   Connection *con;
 
   void initialize(int, int, bool, int);
+
+
+  /*-------------------------------------------------------------------------------------------------*/
+
+  float convertCoordy(float coord);
+  float convertCoordx(float coord);
+  bool checkPOI(list<wayList> organised_POIs, Street* street);
+  void displaySelectedWay(Graph<Street*> graph, list<wayList> organizedPOIs,
+  		list<Street*> way);
 };
 
 #endif
