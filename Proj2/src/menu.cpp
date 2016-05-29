@@ -63,6 +63,7 @@ void Options() {
 		displayPassengerInfo();
 		break;
 	case 2:
+		selectRoute();
 		break;
 	case 3:
 		listRoutes();
@@ -94,6 +95,105 @@ void displayPassengerInfo() {
 		cout << "Route - " << passengerInfo.second << endl;
 
 	Options();
+}
+
+void selectRoute() {
+	cout << "\nNumber of routes = " << NUM_ROUTES << endl;
+	cout << "Max capacity per route = " << MAX_CAPACITY << endl;
+	vector<int> capacity = checkRouteCapacity();
+
+	cout << "\nNumber of passengers per route:" << endl;
+	for (size_t i = 0; i < capacity.size(); i++) {
+		cout << "Route " << i + 1 << " = " << capacity[i];
+
+		if (passengerInfo.second == i + 1)
+			cout << " (Current) ";
+
+		if (capacity[i] >= MAX_CAPACITY)
+			cout << " - FULL" << endl;
+		else
+			cout << endl;
+	}
+
+	int choice = 0;
+	do {
+		cout << "\nSelect a route number: ";
+		cin >> choice;
+	} while (choice <= 0 || choice > NUM_ROUTES);
+
+	if (passengerInfo.second == choice) {
+		cout << "The route you picked is the same you have currently selected." << endl;
+	} else {
+		Graph<Street*> graph;
+		list<Street*> streets;
+		list<POI*> POIs;
+
+		loadStreets("ruas.txt", graph, streets);
+		loadPOIs("pois.txt", POIs, streets);
+
+		list<POI*> route;
+
+		string path = "itinerario";
+		path += intToString(choice) + ".txt";
+		loadRoute(path, route, POIs);
+
+		list<wayList> organizedPOIs = ordPOI(graph, route);
+		Graph<POI*> poiGraph = convertToGraph(organizedPOIs);
+		list<POI*> orderedPOIs = poiGraph.branchAndBoundSmallestCircuit();
+		list<Street*> way = streetPath(organizedPOIs, orderedPOIs);
+
+		cout << "\nRoute " << choice << ":\n" << "Avenida dos Aliados";
+
+		list<POI*>::iterator it = orderedPOIs.begin();
+		for (it++; it != orderedPOIs.end(); it++) {
+			cout << " - " << (*it)->getName();
+		}
+		cout << endl;
+
+		displaySelectedWay(graph, organizedPOIs, way);
+
+		int select;
+		do {
+			cout << "\nDo you want to select this route?" << endl;
+			cout << "1. Yes" << endl;
+			cout << "2. No" << endl;
+			cin >> select;
+		} while (select != 1 && select != 2);
+
+		if (select == 1) {
+			if (capacity[choice] < MAX_CAPACITY) {
+				passengerInfo.second = choice;
+				cout << "\nRoute selected!" << endl;
+				saveData();
+			} else
+				cout
+						<< "\nCouldn't select route. Route has reached the max capacity."
+						<< endl;
+		}
+	}
+	Options();
+}
+
+vector<int> checkRouteCapacity() {
+	vector<int> capacity(NUM_ROUTES, 0);
+
+	ifstream file;
+	file.open("passageiros.txt");
+	string name;
+	string route;
+
+	if (!file.is_open()) {
+		cout << "ERROR: Can't open passengers file!" << endl;
+		return capacity;
+	}
+
+	while (getline(file, name)) {
+		getline(file, route);
+		capacity[atoi(route.c_str()) - 1]++;
+	}
+	file.close();
+
+	return capacity;
 }
 
 string enterName() {
@@ -157,15 +257,20 @@ void listPassengers() {
 	string route;
 	int i = 0;
 
+	if (!file.is_open()) {
+		cout << "ERROR: Can't open passengers file!" << endl;
+		return;
+	}
+
 	while (getline(file, name)) {
 		getline(file, route);
 		i++;
 
 		cout << setw(20) << left << name << route << endl;
 	}
-
 	cout << "\nNumber of passengers = " << i << endl;
 
+	file.close();
 	Options();
 }
 
@@ -199,9 +304,8 @@ void searchPOI() {
 		matches = numApproximateStringMatchingPOI(poi);
 
 		if (matches.empty()) {
-			cout
-					<< "\nThere is no exact or approximate match for \"" << poi << "\".\n"
-					<< endl;
+			cout << "\nThere is no exact or approximate match for \"" << poi
+					<< "\".\n" << endl;
 		} else {
 			cout
 					<< "\nThere is no exact match for the \"Point of Interest\" you entered.\n"
@@ -213,11 +317,6 @@ void searchPOI() {
 		}
 	}
 	Options();
-}
-vector<int> searchRoute(string POI) {
-	vector<int> matches;
-
-	return matches;
 }
 
 void searchPassengers() {

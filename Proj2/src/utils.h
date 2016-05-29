@@ -12,6 +12,7 @@
 
 
 #define NUM_ROUTES 5
+#define MAX_CAPACITY 3
 
 struct Coord{
 	float longitude;

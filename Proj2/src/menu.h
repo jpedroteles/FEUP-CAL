@@ -25,15 +25,18 @@
 using namespace std;
 
 void welcome();
+string enterName();
+
 void Options();
 void displayPassengerInfo();
+void selectRoute();
+vector<int> checkRouteCapacity();
+
 void listRoutes();
 void listPassengers();
 void displaySelectedWay(Graph<Street*> graph, list<wayList> organizedPOIs,
 		list<Street*> way);
-string enterName();
 void searchPOI();
-vector<int> searchRoute(string POI);
 void searchPassengers();
 
 void saveData();

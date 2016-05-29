@@ -7,8 +7,10 @@ Carla
 Daniel
 2
 Joao
-1
+2
 Jose
 2
+Manuel
+4
 Maria
 4
