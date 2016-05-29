@@ -114,6 +114,30 @@ vector<pair<string, int> > numStringMatchingPassengers(string name) {
 	return matches;
 }
 
+vector<pair<string, int> > numApproximateStringMatchingPassengers(string name) {
+	vector<pair<string, int> > matches;
+
+	ifstream file("passageiros.txt");
+	if (!file.is_open()) {
+		cout << "ERROR: Can't open passengers file!" << endl;
+		return matches;
+	}
+
+	string lineName;
+	string lineRoute;
+
+	while (!file.eof()) {
+		getline(file, lineName);
+		getline(file, lineRoute);
+		if (editDistance(lineName, name) < 4) {
+			pair<string, int> match(lineName, atoi(lineRoute.c_str()));
+			matches.push_back(match);
+		}
+	}
+	file.close();
+	return matches;
+}
+
 int editDistance(string pattern, string text) {
 	int n = text.length();
 	vector<int> d(n + 1);

@@ -26,5 +26,6 @@ int numStringMatchingRoutes(string toSearch);
 
 int searchPassengerRoute(string name);
 vector<pair<string, int> > numStringMatchingPassengers(string name);
+vector<pair<string, int> > numApproximateStringMatchingPassengers(string name);
 
 #endif /* MATCHER_H_ */

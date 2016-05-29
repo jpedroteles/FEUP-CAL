@@ -172,12 +172,18 @@ void searchPassengers() {
 	string toSearch = enterName();
 
 	vector<pair<string, int> > matches = numStringMatchingPassengers(toSearch);
+	if (matches.empty()) {
+		matches = numApproximateStringMatchingPassengers(toSearch);
+		if (matches.empty()) {
+			cout << "\nNo exact or approximate matches found." << endl;
+			return Options();
+		} else
+			cout << "\nNo exact matches found. Were you looking for these?"
+					<< endl;
+	}
 
 	cout << "\nNumber of matches = " << matches.size() << endl;
 
-	if (matches.empty()) {
-
-	}
 	cout << setw(18) << left << "\nName" << "Route" << endl;
 	for (size_t i = 0; i < matches.size(); i++) {
 		cout << setw(20) << left << matches[i].first << matches[i].second
@@ -199,23 +205,33 @@ void saveData() {
 
 	string lineName;
 	string lineRoute;
+	bool foundName = false;
 
 	while (getline(fileIn, lineName)) {
 		getline(fileIn, lineRoute);
-		if (lineName == passengerInfo.first)
+		if (lineName == passengerInfo.first) {
+			foundName = true;
 			passengers.push_back(
 					make_pair(passengerInfo.first, passengerInfo.second));
-		else
+		} else
 			passengers.push_back(make_pair(lineName, atoi(lineRoute.c_str())));
 	}
+
+	if (!foundName && passengerInfo.second != 0)
+		passengers.push_back(
+				make_pair(passengerInfo.first, passengerInfo.second));
 
 	sort(passengers.begin(), passengers.end());
 
 	fileIn.close();
 	ofstream fileOut("passageiros.txt", ios::trunc);
-	for (size_t i = 0; i < passengers.size(); i++) {
-		fileOut << passengers[i].first << endl;
-		fileOut << passengers[i].second << endl;
+	if (!passengers.empty()) {
+		fileOut << passengers[0].first << endl;
+		fileOut << passengers[0].second;
+	}
+	for (size_t i = 1; i < passengers.size(); i++) {
+		fileOut << "\n" << passengers[i].first << endl;
+		fileOut << passengers[i].second;
 	}
 
 }
