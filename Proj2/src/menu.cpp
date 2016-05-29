@@ -3,10 +3,9 @@
  */
 
 #include "menu.h"
+#include "utils.h"
 
 using namespace std;
-
-#define NUM_ROUTES 5
 
 pair<string, int> passengerInfo;
 
@@ -72,6 +71,7 @@ void Options() {
 		listPassengers();
 		break;
 	case 5:
+		searchPOI();
 		break;
 	case 6:
 		searchPassengers();
@@ -168,6 +168,58 @@ void listPassengers() {
 
 	Options();
 }
+
+void searchPOI() {
+	string poi;
+	fflush(stdin);
+	do {
+		cout << "\nEnter a \"Point of Interest\": ";
+		getline(cin, poi);
+	} while (poi.empty());
+
+	vector<string> matches = numStringMatchingPOI(poi);
+	if (matches.size() > 1) {
+		cout << "\nMore than one match found: " << endl;
+		for (size_t i = 0; i < matches.size(); i++) {
+			cout << matches[i] << endl;
+		}
+	} else if (matches.size() == 1) {
+		poi = matches[0];
+		vector<int> matchesRoute = numStringMatchingRoutes(poi);
+
+		if (matches.empty()) {
+			cout << "\nNone of the routes visit \"" << poi << "\"\n" << endl;
+		} else {
+			cout << "\nRoutes that visit \"" << poi << "\"\n" << endl;
+			for (size_t i = 0; i < matchesRoute.size(); i++) {
+				cout << "Route " << matchesRoute[i] << endl;
+			}
+		}
+	} else {
+		matches = numApproximateStringMatchingPOI(poi);
+
+		if (matches.empty()) {
+			cout
+					<< "\nThere is no exact or approximate match for \"" << poi << "\".\n"
+					<< endl;
+		} else {
+			cout
+					<< "\nThere is no exact match for the \"Point of Interest\" you entered.\n"
+					<< endl;
+			cout << "Were you looking for these?" << endl;
+			for (size_t i = 0; i < matches.size(); i++) {
+				cout << matches[i] << endl;
+			}
+		}
+	}
+	Options();
+}
+vector<int> searchRoute(string POI) {
+	vector<int> matches;
+
+	return matches;
+}
+
 void searchPassengers() {
 	string toSearch = enterName();
 

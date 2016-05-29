@@ -3,6 +3,7 @@
  */
 
 #include "matcher.h"
+#include "utils.h"
 
 int kmp(string text, string pattern) {
 	int num = 0;
@@ -34,7 +35,7 @@ int kmp(string text, string pattern) {
 
 int numStringMatching(string filename, string toSearch) {
 	ifstream file(filename.c_str());
-	if (!file) {
+	if (!file.is_open()) {
 		cout << "Erro a abrir ficheiro de leitura\n";
 		return 0;
 	}
@@ -48,22 +49,80 @@ int numStringMatching(string filename, string toSearch) {
 	return num;
 }
 
-int numStringMatchingRoutes(string toSearch) {
-	/*
-	 ifstream file(filename.c_str());
-	 if (!file){
-	 cout << "Erro a abrir ficheiro de leitura\n";
-	 return 0;
-	 }
-	 string line1;
-	 int num=0;
-	 while (!file.eof()) {
-	 getline(file,line1);
-	 num+=kmp(line1,toSearch);
-	 }
-	 file.close();
-	 */
-	return 0;
+vector<string> numStringMatchingPOI(string toSearch) {
+	vector<string> matches;
+
+	ifstream file("pois.txt");
+	if (!file.is_open()) {
+		cout << "ERROR: Can't open POIs file.\n";
+		return matches;
+	}
+
+	string poi;
+	string route;
+	string line;
+
+	while (getline(file, poi)) {
+		getline(file, route);
+		getline(file, line);
+
+		if (kmp(poi, toSearch) > 0) {
+			if (poi != "Inicio")
+				matches.push_back(poi);
+		}
+	}
+	file.close();
+	return matches;
+}
+vector<string> numApproximateStringMatchingPOI(string toSearch) {
+	vector<string> matches;
+
+	ifstream file("pois.txt");
+	if (!file.is_open()) {
+		cout << "ERROR: Can't open POIs file.\n";
+		return matches;
+	}
+
+
+	string poi;
+	string route;
+	string line;
+
+	while (getline(file, poi)) {
+		getline(file, route);
+		getline(file, line);
+		if (editDistance(poi, toSearch) < 4)
+			matches.push_back(poi);
+	}
+	file.close();
+
+	return matches;
+}
+
+vector<int> numStringMatchingRoutes(string toSearch) {
+	vector<int> matches;
+
+	string path = "itinerario";
+
+	for (size_t i = 1; i <= NUM_ROUTES; i++) {
+		string pathRoute = path + intToString(i) + ".txt";
+
+		ifstream file(pathRoute.c_str());
+		if (!file.is_open()) {
+			cout << "ERROR: Can't open route " << i << " file.\n";
+		}
+
+		string poi;
+
+		while (getline(file, poi)) {
+			if (toSearch == poi) {
+				matches.push_back(i);
+				break;
+			}
+		}
+		file.close();
+	}
+	return matches;
 }
 
 int searchPassengerRoute(string name) {
@@ -165,7 +224,7 @@ int editDistance(string pattern, string text) {
 
 float numApproximateStringMatching(string filename, string toSearch) {
 	ifstream file(filename.c_str());
-	if (!file) {
+	if (!file.is_open()) {
 		cout << "Erro a abrir ficheiro de leitura\n";
 		return 0;
 	}

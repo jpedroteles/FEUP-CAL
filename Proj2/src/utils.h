@@ -11,6 +11,8 @@
 #include <vector>
 
 
+#define NUM_ROUTES 5
+
 struct Coord{
 	float longitude;
 	float latitude;

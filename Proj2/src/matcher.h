@@ -22,7 +22,11 @@ int numStringMatching(string filename, string toSearch);
 int editDistance(string pattern, string text);
 float numApproximateStringMatching(string filename, string toSearch);
 
-int numStringMatchingRoutes(string toSearch);
+
+vector<string> numStringMatchingPOI(string toSearch);
+vector<string> numApproximateStringMatchingPOI(string toSearch);
+
+vector<int> numStringMatchingRoutes(string toSearch);
 
 int searchPassengerRoute(string name);
 vector<pair<string, int> > numStringMatchingPassengers(string name);

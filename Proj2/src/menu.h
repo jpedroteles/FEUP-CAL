@@ -18,7 +18,6 @@
 #include "Graph.h"
 #include "street.h"
 #include "POI.h"
-#include "utils.h"
 #include "way.h"
 #include "matcher.h"
 
@@ -33,6 +32,8 @@ void listPassengers();
 void displaySelectedWay(Graph<Street*> graph, list<wayList> organizedPOIs,
 		list<Street*> way);
 string enterName();
+void searchPOI();
+vector<int> searchRoute(string POI);
 void searchPassengers();
 
 void saveData();
